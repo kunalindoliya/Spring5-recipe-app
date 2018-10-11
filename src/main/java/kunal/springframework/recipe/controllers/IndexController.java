@@ -1,10 +1,12 @@
 package kunal.springframework.recipe.controllers;
 
 import kunal.springframework.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -27,6 +29,7 @@ public class IndexController {
         Optional<UnitOfMeasure> uom=unitOfMeasureRepository.findByDescription("Teaspoon");
         System.out.println("Cat id: "+categoryOptional.get().getId());
         System.out.println("Uom id : "+uom.get().getId());*/
+        log.debug("Loading Index page");
         model.addAttribute("recipes",recipeService.getRecipes());
 
         return "index";
