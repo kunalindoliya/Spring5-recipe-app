@@ -1,6 +1,8 @@
 package kunal.springframework.recipe.services;
 
 
+import kunal.springframework.recipe.converters.RecipeCommandToRecipe;
+import kunal.springframework.recipe.converters.RecipeToRecipeCommand;
 import kunal.springframework.recipe.model.Recipe;
 import kunal.springframework.recipe.repositories.RecipeRepository;
 import org.junit.Before;
@@ -20,11 +22,16 @@ public class RecipeServiceImplTest {
 
     @Mock
     RecipeRepository recipeRepository;
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
