@@ -9,16 +9,16 @@ public class CategoryTest {
     Category category;
 
     @Before
-    public void setUp(){
-        category=new Category();
+    public void setUp() {
+        category = new Category();
 
     }
 
     @Test
     public void getId() {
-        Long idval=4L;
+        Long idval = 4L;
         category.setId(idval);
-        assertEquals(idval,category.getId());
+        assertEquals(idval, category.getId());
     }
 
     @Test

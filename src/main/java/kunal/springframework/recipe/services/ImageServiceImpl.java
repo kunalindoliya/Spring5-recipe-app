@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 
 @Service
 @Slf4j
-public class ImageServiceImpl implements ImageService{
+public class ImageServiceImpl implements ImageService {
     private final RecipeRepository recipeRepository;
 
     public ImageServiceImpl(RecipeRepository recipeRepository) {
@@ -20,17 +20,17 @@ public class ImageServiceImpl implements ImageService{
     @Transactional
     @Override
     public void saveImageFile(Long recipeId, MultipartFile file) {
-        try{
-            Recipe recipe=recipeRepository.findById(recipeId).get();
-            Byte[] byteObjects=new Byte[file.getBytes().length];
-            int i=0;
-            for(byte b:file.getBytes()){
-                byteObjects[i++]=b;
+        try {
+            Recipe recipe = recipeRepository.findById(recipeId).get();
+            Byte[] byteObjects = new Byte[file.getBytes().length];
+            int i = 0;
+            for (byte b : file.getBytes()) {
+                byteObjects[i++] = b;
             }
             recipe.setImage(byteObjects);
             recipeRepository.save(recipe);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("error occured");
             e.printStackTrace();
         }

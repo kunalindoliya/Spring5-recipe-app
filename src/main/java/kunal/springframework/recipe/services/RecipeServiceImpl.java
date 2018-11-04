@@ -3,6 +3,7 @@ package kunal.springframework.recipe.services;
 import kunal.springframework.recipe.commands.RecipeCommand;
 import kunal.springframework.recipe.converters.RecipeCommandToRecipe;
 import kunal.springframework.recipe.converters.RecipeToRecipeCommand;
+import kunal.springframework.recipe.exceptions.NotFoundException;
 import kunal.springframework.recipe.model.Recipe;
 import kunal.springframework.recipe.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -45,10 +46,10 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe findById(Long l){
-        Optional<Recipe> recipeOptional=recipeRepository.findById(l);
-        if (!recipeOptional.isPresent()){
-            throw new RuntimeException("Recipe not found");
+    public Recipe findById(Long l) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(l);
+        if (!recipeOptional.isPresent()) {
+            throw new NotFoundException("Recipe not found for Id value: " + l.toString());
         }
         return recipeOptional.get();
     }

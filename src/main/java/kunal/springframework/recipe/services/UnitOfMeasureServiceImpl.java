@@ -18,6 +18,7 @@ public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
         this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.unitOfMeasureToUnitOfMeasureCommand = unitOfMeasureToUnitOfMeasureCommand;
     }
+
     @Override
     public Set<UnitOfMeasureCommand> listAllUoms() {
         return StreamSupport.stream(unitOfMeasureRepository.findAll()
